@@ -14,7 +14,7 @@ from sys import argv,exit
 
 # String to Float / Integer Umwandlung
 # argv Argumente, werden mit %run als String übergeben
-script, A ,x0, b, epsilon, pause, konj = argv
+script, A ,x0, b, epsilon, pause, konj, xyPlot = argv
 A = np.fromstring(A, dtype=float, sep=',')
 
 # Abfrage ob die Matrix Form nxn besitzt ( von 2x2 bis zu 100x100 )
@@ -62,6 +62,12 @@ if(konj == "True"):
     pass
 else:
     konj = False
+    pass
+if(xyPlot == "True"):
+    xyPlot = True
+    pass
+else:
+    xyPlot = False
     pass
 
 # Fehlerabfangen bei unpassenden Dimensionen
@@ -235,6 +241,10 @@ if(A.shape[0]==2):
     def run(index):
         surf2 = ax.plot(x[0:index+1],y[0:index+1], z[0:index+1],"r-", label='parametrix curve', 
                        linewidth=2, )
+        if(xyPlot):
+            line = ax.plot(x[0:index+1], y[0:index+1], Z.min() , "black" , label= 'parametrix curve' )
+            pass
+        
         return
 
     # Die Animationsfunktion mit Parameter 
